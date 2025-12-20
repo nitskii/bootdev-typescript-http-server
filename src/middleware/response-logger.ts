@@ -1,6 +1,6 @@
-import { Middleware } from './types.js';
+import { RequestHandler } from 'express';
 
-const responseLogger: Middleware = (req, res, next): void => {
+const responseLogger: RequestHandler = (req, res, next) => {
   res.on('finish', () => {
     const message =
       (res.statusCode >= 300 ? '[NON-OK] ' : '') +
