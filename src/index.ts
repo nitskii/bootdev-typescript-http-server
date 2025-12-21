@@ -1,16 +1,13 @@
 import express from 'express';
 
-import { metricsHandler, readinessHandler, resetHandler } from 'src/handlers';
+import apiRouter from 'src/api';
 import { fileserverHitsCounter, responseLogger } from 'src/middleware';
 
 const app = express();
 
 app.use('/app', fileserverHitsCounter, express.static('app'));
 app.use(responseLogger);
-
-app.get('/healthz', readinessHandler);
-app.get('/metrics', metricsHandler);
-app.get('/reset', resetHandler);
+app.use('/api', apiRouter);
 
 const port = parseInt(process.argv[2]) || 8080;
 
