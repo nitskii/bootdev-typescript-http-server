@@ -6,7 +6,31 @@ export const chirpValidationHandler: RequestHandler = (req, res) => {
   if (chirp.body.length > 140) {
     const error = JSON.stringify({ error: 'Chirp is too long' });
     res.status(400).send(error);
-  } else {
-    res.send(JSON.stringify({ valid: true }));
+    return;
   }
+
+  const cleanedBody = cleanBody(chirp.body);
+
+  res.send(JSON.stringify({ cleanedBody }));
+};
+
+const cleanBody = (body: string): string => {
+  return body
+    .split(' ')
+    .map(maskProfaneWord)
+    .join(' ');
+};
+
+const PROFANE_WORDS = [
+  'kerfuffle',
+  'sharbert',
+  'fornax',
+];
+
+const maskProfaneWord = (word: string): string => {
+  if (PROFANE_WORDS.includes(word.toLowerCase())) {
+    return '****';
+  }
+
+  return word;
 };
