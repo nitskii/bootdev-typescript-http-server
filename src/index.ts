@@ -8,6 +8,7 @@ const app = express();
 
 app.use('/app', fileserverHitsCounter, express.static('app'));
 app.use(responseLogger);
+app.use(express.json());
 app.use('/api', apiRouter);
 app.use('/admin', adminRouter);
 
