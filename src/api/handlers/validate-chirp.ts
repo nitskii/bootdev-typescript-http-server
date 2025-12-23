@@ -1,10 +1,12 @@
 import { RequestHandler } from 'express';
 
+import { BadRequestError } from 'src/errors';
+
 export const chirpValidationHandler: RequestHandler = async (req, res, next) => {
   const chirp = req.body;
 
   if (chirp.body.length > 140) {
-    next(new Error('Chirp is too long'));
+    next(new BadRequestError('Chirp is too long. Max length is 140'));
     return;
   }
 
