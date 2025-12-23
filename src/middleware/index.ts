@@ -1,4 +1,5 @@
+import { errorHandler } from 'src/middleware/error-handler';
 import fileserverHitsCounter from 'src/middleware/fileserver-hits-counter';
 import responseLogger from 'src/middleware/response-logger';
 
-export { fileserverHitsCounter, responseLogger };
+export { errorHandler, fileserverHitsCounter, responseLogger };

@@ -2,7 +2,7 @@ import express from 'express';
 
 import adminRouter from 'src/admin';
 import apiRouter from 'src/api';
-import { fileserverHitsCounter, responseLogger } from 'src/middleware';
+import { errorHandler, fileserverHitsCounter, responseLogger } from 'src/middleware';
 
 const app = express();
 
@@ -11,6 +11,7 @@ app.use(responseLogger);
 app.use(express.json());
 app.use('/api', apiRouter);
 app.use('/admin', adminRouter);
+app.use(errorHandler);
 
 const port = parseInt(process.argv[2]) || 8080;
 
