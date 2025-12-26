@@ -1,0 +1,12 @@
+import { db } from 'src/db';
+import { NewUser, users } from 'src/db/schema';
+
+export const createUser = async (user: NewUser) => {
+  const [result] = await db
+    .insert(users)
+    .values(user)
+    .onConflictDoNothing()
+    .returning();
+
+  return result;
+}
