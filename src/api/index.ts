@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import {
-  chirpValidationHandler,
+  chirpCreationHandler,
   readinessHandler,
   userCreationHandler,
 } from 'src/api/handlers';
@@ -9,7 +9,7 @@ import {
 const apiRouter = Router();
 
 apiRouter.get('/healthz', readinessHandler);
-apiRouter.post('/validate_chirp', chirpValidationHandler);
 apiRouter.post('/users', userCreationHandler);
+apiRouter.post('/chirps', chirpCreationHandler);
 
 export default apiRouter;
