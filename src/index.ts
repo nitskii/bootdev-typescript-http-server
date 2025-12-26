@@ -2,7 +2,10 @@ import express from 'express';
 
 import adminRouter from 'src/admin';
 import apiRouter from 'src/api';
+import { runMigrations } from 'src/db/migrator';
 import { errorHandler, fileserverHitsCounter, responseLogger } from 'src/middleware';
+
+await runMigrations();
 
 const app = express();
 

@@ -3,5 +3,10 @@ import { envOrThrow } from 'src/util/helpers';
 
 export const config: APIConfig = {
   fileserverHits: 0,
-  dbURL: envOrThrow('DB_URL'),
+  db: {
+    url: envOrThrow('DB_URL'),
+    migrations: {
+      folder: 'src/db/migrations',
+    },
+  },
 };

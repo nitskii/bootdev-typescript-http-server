@@ -1,4 +1,6 @@
+import { DBConfig } from 'src/db/types';
+
 export type APIConfig = {
   fileserverHits: number;
-  dbURL: string;
+  db: DBConfig;
 };
