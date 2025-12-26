@@ -3,7 +3,7 @@ import { RequestHandler } from 'express';
 import { createChirp } from 'src/db/queries';
 import { BadRequestError } from 'src/errors';
 
-export const chirpCreationHandler: RequestHandler = async (req, res, next) => {
+const chirpCreationHandler: RequestHandler = async (req, res, next) => {
   const { body, userId } = req.body;
 
   if (body.length > 140) {
@@ -41,3 +41,5 @@ const maskProfaneWord = (word: string): string => {
 
   return word;
 };
+
+export default chirpCreationHandler;
